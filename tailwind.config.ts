@@ -37,7 +37,7 @@ const config: Config = {
         xs: '2px',
       },
       spacing: {
-        'safe-bottom': '80px',
+        'safe-bottom': '100px',
       },
     },
   },

@@ -88,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 <Logo size="md" />
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-card rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center mr-2"
+                  className="p-2 hover:bg-card rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center mr-4"
                   aria-label="Fechar menu"
                 >
                   <X className="w-6 h-6" />
