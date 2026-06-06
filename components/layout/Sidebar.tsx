@@ -88,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 <Logo size="md" />
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-card rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="p-2 hover:bg-card rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center mr-2"
                   aria-label="Fechar menu"
                 >
                   <X className="w-6 h-6" />
@@ -133,7 +133,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               </nav>
 
               {/* Footer - Fixed at bottom */}
-              <div className="p-4 border-t border-card shrink-0 space-y-2">
+              <div className="p-4 border-t border-card shrink-0 space-y-2 pb-safe-bottom">
                 <Link
                   href="/configuracoes"
                   onClick={onClose}

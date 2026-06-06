@@ -36,6 +36,9 @@ const config: Config = {
       backdropBlur: {
         xs: '2px',
       },
+      spacing: {
+        'safe-bottom': '80px',
+      },
     },
   },
   plugins: [],
