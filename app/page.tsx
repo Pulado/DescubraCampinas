@@ -13,11 +13,13 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { locations } from '@/lib/data'
 import { MapPin, Navigation, Sparkles, TrendingUp } from 'lucide-react'
+import { useLocationDetection } from '@/lib/hooks/useLocationDetection'
 
 export default function HomePage() {
   const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const { city } = useLocationDetection()
   const [user, setUser] = useState({
     firstName: 'Usuário',
     lastName: '',
@@ -64,35 +66,35 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="mb-6"
           >
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1">
-                  Olá, {fullName}! 👋
+                <h1 className="text-xl sm:text-2xl font-bold text-text mb-1 font-heading">
+                  Olá, {fullName}!
                 </h1>
-                <p className="text-text-secondary">
-                  Descubra novos lugares em Campinas
+                <p className="text-text-secondary text-sm">
+                  Descubra novos lugares em {city || 'Campinas'}
                 </p>
               </div>
-              <div className="flex items-center gap-2 glass px-4 py-2 rounded-xl shadow-glow">
-                <Sparkles className="w-5 h-5 text-accent" />
-                <span className="font-bold text-accent">{user.coins}</span>
+              <div className="flex items-center gap-2 glass px-3 py-2 rounded-xl shadow-glow">
+                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="font-bold text-accent text-sm">{user.coins}</span>
               </div>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-3">
-              <div className="glass rounded-xl p-4 text-center shadow-glow">
-                <div className="text-2xl font-bold text-primary">{user.visits}</div>
+              <div className="card-premium rounded-xl p-3 text-center">
+                <div className="text-xl font-bold text-primary">{user.visits}</div>
                 <div className="text-xs text-text-secondary">Visitas</div>
               </div>
-              <div className="glass rounded-xl p-4 text-center shadow-glow-blue">
-                <div className="text-2xl font-bold text-secondary">{user.level}</div>
+              <div className="card-premium rounded-xl p-3 text-center">
+                <div className="text-xl font-bold text-secondary">{user.level}</div>
                 <div className="text-xs text-text-secondary">Nível</div>
               </div>
-              <div className="glass rounded-xl p-4 text-center shadow-glow-yellow">
-                <div className="text-2xl font-bold text-accent">{user.distance}</div>
+              <div className="card-premium rounded-xl p-3 text-center">
+                <div className="text-xl font-bold text-accent">{user.distance}</div>
                 <div className="text-xs text-text-secondary">km</div>
               </div>
             </div>
@@ -113,9 +115,9 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="mb-8"
+            className="mb-6"
           >
-            <div className="relative h-64 bg-surface rounded-2xl overflow-hidden border border-card">
+            <div className="relative h-56 card-premium rounded-2xl overflow-hidden">
               {/* Simulated Dark Map */}
               <div className="absolute inset-0 bg-gradient-to-br from-surface to-background">
                 <div className="absolute inset-0 opacity-20">
@@ -131,18 +133,18 @@ export default function HomePage() {
               {/* Map Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <MapPin className="w-12 h-12 text-primary mx-auto mb-2" />
-                  <p className="text-text font-medium">Mapa Interativo</p>
-                  <p className="text-text-secondary text-sm">Encontre locais próximos</p>
+                  <MapPin className="w-10 h-10 text-primary mx-auto mb-2" />
+                  <p className="text-text font-medium text-sm">Mapa Interativo</p>
+                  <p className="text-text-secondary text-xs">Encontre locais próximos</p>
                 </div>
               </div>
 
               {/* Location Button */}
               <Button
                 variant="primary"
-                className="absolute bottom-4 right-4 shadow-lg"
+                className="absolute bottom-3 right-3 shadow-lg"
               >
-                <Navigation className="w-5 h-5" />
+                <Navigation className="w-4 h-4" />
               </Button>
             </div>
           </motion.div>
@@ -152,7 +154,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="mb-8"
+            className="mb-6"
           >
             <CategoryFilter
               selectedCategory={selectedCategory}
@@ -166,14 +168,14 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="mb-8"
+              className="mb-6"
             >
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-text flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary" />
+                <h2 className="text-lg font-bold text-text flex items-center gap-2 font-heading">
+                  <TrendingUp className="w-4 h-4 text-primary" />
                   Destaques
                 </h2>
-                <Badge variant="primary">Populares</Badge>
+                <Badge variant="primary" className="text-xs">Populares</Badge>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -197,7 +199,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <h2 className="text-xl font-bold text-text mb-4">
+            <h2 className="text-lg font-bold text-text mb-4 font-heading">
               {selectedCategory ? 'Locais encontrados' : 'Todos os locais'}
             </h2>
             

@@ -6,6 +6,7 @@ import { Logo } from './Logo'
 import { Avatar } from '../ui/Avatar'
 import { Bell, Menu, User, Settings, Heart, LogOut, ChevronDown } from 'lucide-react'
 import { User as UserType } from '@/lib/types'
+import { useLocationDetection } from '@/lib/hooks/useLocationDetection'
 
 interface HeaderProps {
   showMenu?: boolean
@@ -16,6 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ showMenu = true, onMenuClick }) 
   const router = useRouter()
   const [user, setUser] = useState<UserType | null>(null)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const { city, loading } = useLocationDetection()
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user')
@@ -53,35 +55,35 @@ export const Header: React.FC<HeaderProps> = ({ showMenu = true, onMenuClick }) 
   const fullName = user ? `${user.firstName} ${user.lastName}`.trim() : 'Usuário'
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-4">
             {showMenu && (
               <button
                 onClick={onMenuClick}
-                className="lg:hidden p-3 hover:bg-card rounded-xl transition-colors"
+                className="lg:hidden p-2.5 hover:bg-card/50 rounded-xl transition-colors"
               >
                 <Menu className="w-6 h-6 text-text-secondary" />
               </button>
             )}
-            <Logo size="md" />
+            <Logo size="md" city={city} loading={loading} />
           </div>
           
-          <div className="flex items-center gap-3">
-            <button className="relative p-3 hover:bg-card rounded-xl transition-colors group">
-              <Bell className="w-6 h-6 text-text-secondary group-hover:text-text transition-colors" />
-              <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-primary rounded-full shadow-glow" />
+          <div className="flex items-center gap-2">
+            <button className="relative p-2.5 hover:bg-card/50 rounded-xl transition-colors group">
+              <Bell className="w-5 h-5 text-text-secondary group-hover:text-text transition-colors" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full shadow-glow animate-pulse" />
             </button>
             
             {user && (
               <div className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-3 p-2 hover:bg-card rounded-xl transition-colors"
+                  className="flex items-center gap-2.5 p-2 hover:bg-card/50 rounded-xl transition-colors"
                 >
-                  <Avatar src={user.avatar} alt={fullName} size="md" />
-                  <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                  <Avatar src={user.avatar} alt={fullName} size="sm" />
+                  <ChevronDown className={`w-4 h-4 text-text-secondary transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Dropdown Menu */}
@@ -91,53 +93,53 @@ export const Header: React.FC<HeaderProps> = ({ showMenu = true, onMenuClick }) 
                       className="fixed inset-0 z-40"
                       onClick={() => setDropdownOpen(false)}
                     />
-                    <div className="absolute right-0 top-full mt-3 w-64 glass-strong rounded-2xl shadow-glow border border-border overflow-hidden z-50">
-                      <div className="p-4 border-b border-border">
-                        <p className="font-semibold text-text text-lg">{fullName}</p>
-                        <p className="text-sm text-text-secondary truncate">{user.email}</p>
+                    <div className="absolute right-0 top-full mt-2 w-56 glass-strong rounded-xl shadow-glow border border-border/50 overflow-hidden z-50">
+                      <div className="p-3 border-b border-border/50">
+                        <p className="font-semibold text-text text-base">{fullName}</p>
+                        <p className="text-xs text-text-secondary truncate">{user.email}</p>
                       </div>
                       
-                      <div className="p-2 space-y-1">
+                      <div className="p-1.5 space-y-0.5">
                         <button
                           onClick={handleProfile}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-text hover:bg-card/50 rounded-lg transition-colors"
                         >
-                          <User className="w-5 h-5 text-text-secondary" />
-                          <span className="font-medium">Meu Perfil</span>
+                          <User className="w-4 h-4 text-text-secondary" />
+                          <span className="font-medium text-sm">Meu Perfil</span>
                         </button>
                         
                         <button
                           onClick={handleEditProfile}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-text hover:bg-card/50 rounded-lg transition-colors"
                         >
-                          <User className="w-5 h-5 text-text-secondary" />
-                          <span className="font-medium">Editar Perfil</span>
+                          <User className="w-4 h-4 text-text-secondary" />
+                          <span className="font-medium text-sm">Editar Perfil</span>
                         </button>
                         
                         <button
                           onClick={handleFavorites}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-text hover:bg-card/50 rounded-lg transition-colors"
                         >
-                          <Heart className="w-5 h-5 text-text-secondary" />
-                          <span className="font-medium">Favoritos</span>
+                          <Heart className="w-4 h-4 text-text-secondary" />
+                          <span className="font-medium text-sm">Favoritos</span>
                         </button>
                         
                         <button
                           onClick={handleSettings}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-text hover:bg-card/50 rounded-lg transition-colors"
                         >
-                          <Settings className="w-5 h-5 text-text-secondary" />
-                          <span className="font-medium">Configurações</span>
+                          <Settings className="w-4 h-4 text-text-secondary" />
+                          <span className="font-medium text-sm">Configurações</span>
                         </button>
                       </div>
                       
-                      <div className="border-t border-border p-2">
+                      <div className="border-t border-border/50 p-1.5">
                         <button
                           onClick={handleLogout}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-red-500 hover:bg-card rounded-xl transition-colors"
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-red-500 hover:bg-card/50 rounded-lg transition-colors"
                         >
-                          <LogOut className="w-5 h-5" />
-                          <span className="font-medium">Sair</span>
+                          <LogOut className="w-4 h-4" />
+                          <span className="font-medium text-sm">Sair</span>
                         </button>
                       </div>
                     </div>

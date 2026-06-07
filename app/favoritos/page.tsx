@@ -29,36 +29,36 @@ export default function FavoritosPage() {
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 pb-24 lg:pb-8 overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-text mb-2 flex items-center gap-3 font-heading">
-                  <Heart className="w-10 h-10 text-red-500" />
-                  Meus Favoritos
+                <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1.5 flex items-center gap-3 font-heading">
+                  <Heart className="w-8 h-8 text-red-500" />
+                  Favoritos
                 </h1>
-                <p className="text-text-secondary text-base">
+                <p className="text-text-secondary text-sm">
                   {favoriteLocations.length} {favoriteLocations.length === 1 ? 'local favorito' : 'locais favoritos'}
                 </p>
               </div>
             </div>
 
             {favoriteLocations.length === 0 ? (
-              <div className="glass rounded-3xl p-16 text-center shadow-glow">
-                <Heart className="w-20 h-20 text-text-secondary mx-auto mb-6" />
-                <h2 className="text-2xl font-bold text-text mb-3 font-heading">
+              <div className="card-premium rounded-2xl p-12 text-center">
+                <Heart className="w-16 h-16 text-text-secondary mx-auto mb-4" />
+                <h2 className="text-xl font-bold text-text mb-2 font-heading">
                   Nenhum favorito ainda
                 </h2>
-                <p className="text-text-secondary mb-8 text-base">
+                <p className="text-text-secondary text-sm mb-6">
                   Explore os locais e adicione seus favoritos clicando no ícone de coração
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {favoriteLocations.map((location, index) => (
                   <motion.div
                     key={location.id}

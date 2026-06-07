@@ -26,7 +26,7 @@ export const Card: React.FC<CardProps> = ({ children, className = '', onClick, g
       whileHover={onClick ? { scale: 1.02, y: -4 } : { y: -2 }}
       whileTap={onClick ? { scale: 0.98 } : {}}
       onClick={onClick}
-      className={`glass rounded-3xl p-6 border border-border ${getGlowClass(glowColor)} ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      className={`card-premium rounded-2xl p-6 border border-border/50 ${getGlowClass(glowColor)} ${onClick ? 'cursor-pointer' : ''} ${className}`}
       transition={{ duration: 0.2, ease: 'easeOut' }}
     >
       {children}

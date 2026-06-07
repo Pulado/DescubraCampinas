@@ -8,6 +8,7 @@ import { Logo } from '@/components/layout/Logo'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Mail, Lock, User, ArrowRight, Check, Camera, Upload } from 'lucide-react'
+import { useLocationDetection } from '@/lib/hooks/useLocationDetection'
 
 const presetAvatars = [
   'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff',
@@ -20,6 +21,7 @@ const presetAvatars = [
 
 export default function CadastroPage() {
   const router = useRouter()
+  const { city, loading: locationLoading } = useLocationDetection()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -136,9 +138,9 @@ export default function CadastroPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <Logo size="lg" />
+          <Logo size="lg" city={city} loading={locationLoading} />
           <p className="mt-4 text-text-secondary">
-            Crie sua conta e comece a explorar
+            Crie sua conta e comece a explorar {city || 'Campinas'}
           </p>
         </div>
 

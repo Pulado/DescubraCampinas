@@ -8,12 +8,14 @@ import { Logo } from '@/components/layout/Logo'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Mail, Lock, Globe, ArrowRight, User } from 'lucide-react'
+import { useLocationDetection } from '@/lib/hooks/useLocationDetection'
 
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const { city, loading: locationLoading } = useLocationDetection()
 
   const handleGoogleLogin = () => {
     setLoading(true)
@@ -137,9 +139,9 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <Logo size="lg" />
+          <Logo size="lg" city={city} loading={locationLoading} />
           <p className="mt-4 text-text-secondary">
-            Descubra o melhor de Campinas
+            Descubra o melhor de {city || 'Campinas'}
           </p>
         </div>
 

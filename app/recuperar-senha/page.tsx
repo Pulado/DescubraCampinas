@@ -8,9 +8,11 @@ import { Logo } from '@/components/layout/Logo'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react'
+import { useLocationDetection } from '@/lib/hooks/useLocationDetection'
 
 export default function RecuperarSenhaPage() {
   const router = useRouter()
+  const { city, loading: locationLoading } = useLocationDetection()
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
@@ -38,7 +40,7 @@ export default function RecuperarSenhaPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <Logo size="lg" />
+          <Logo size="lg" city={city} loading={locationLoading} />
           <p className="mt-4 text-text-secondary">
             Recupere sua senha
           </p>

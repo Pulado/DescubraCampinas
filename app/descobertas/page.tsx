@@ -25,23 +25,23 @@ export default function DescobertasPage() {
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 pb-24 lg:pb-8 overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-text mb-2 font-heading">
-                  Descobertas Próximas
+                <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1.5 font-heading">
+                  Descobertas
                 </h1>
-                <p className="text-text-secondary text-base">
-                  Encontre lugares incríveis ao seu redor
+                <p className="text-text-secondary text-sm">
+                  Explore lugares incríveis
                 </p>
               </div>
-              <button className="p-3 glass rounded-2xl shadow-glow-blue hover:shadow-glow-blue transition-all">
-                <SlidersHorizontal className="w-6 h-6 text-secondary" />
+              <button className="p-2.5 glass rounded-xl shadow-glow-blue hover:shadow-glow-blue transition-all">
+                <SlidersHorizontal className="w-5 h-5 text-secondary" />
               </button>
             </div>
 
@@ -52,7 +52,7 @@ export default function DescobertasPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="mb-8"
+            className="mb-6"
           >
             <CategoryFilter
               selectedCategory={selectedCategory}
@@ -65,7 +65,7 @@ export default function DescobertasPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {filteredLocations.map((location, index) => (
                 <motion.div
                   key={location.id}
