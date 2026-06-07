@@ -72,27 +72,27 @@ export default function ImpactoPage() {
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 pb-24 lg:pb-8 overflow-x-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1 flex items-center gap-2">
-              <Target className="w-8 h-8 text-primary" />
+            <h1 className="text-3xl sm:text-4xl font-bold text-text mb-2 flex items-center gap-3 font-heading">
+              <Target className="w-10 h-10 text-primary" />
               Impacto na Comunidade
             </h1>
-            <p className="text-text-secondary mb-6">
+            <p className="text-text-secondary mb-8 text-base">
               Seu impacto no ODS 11 - Cidades e Comunidades Sustentáveis
             </p>
 
             {/* ODS 11 Banner */}
-            <div className="gradient-green rounded-2xl p-6 mb-8 shadow-glow">
-              <div className="flex items-center gap-4">
-                <div className="text-5xl">🎯</div>
+            <div className="gradient-green rounded-3xl p-8 mb-10 shadow-glow">
+              <div className="flex items-center gap-6">
+                <div className="text-6xl">🎯</div>
                 <div>
-                  <h2 className="text-2xl font-bold text-text">ODS 11</h2>
-                  <p className="text-text/90">
+                  <h2 className="text-3xl font-bold text-text font-heading">ODS 11</h2>
+                  <p className="text-text/90 text-lg">
                     Cidades e Comunidades Sustentáveis
                   </p>
                 </div>
@@ -100,32 +100,32 @@ export default function ImpactoPage() {
             </div>
 
             {/* Metrics Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               {metrics.map((metric, index) => (
                 <motion.div
                   key={metric.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`${metric.color} glass rounded-2xl p-6 shadow-glass`}
+                  className={`${metric.color} glass rounded-3xl p-6 shadow-glow`}
                 >
                   <div className="flex items-center gap-3 mb-4">
                     {metric.icon}
-                    <Badge variant="default">{metric.ods}</Badge>
+                    <Badge variant="default" className="text-sm px-3 py-1.5">{metric.ods}</Badge>
                   </div>
-                  <div className="text-3xl font-bold text-text mb-1">{metric.value}</div>
-                  <div className="text-sm text-text-secondary">{metric.label}</div>
+                  <div className="text-3xl font-bold text-text mb-2 font-heading">{metric.value}</div>
+                  <div className="text-base text-text-secondary">{metric.label}</div>
                 </motion.div>
               ))}
             </div>
 
             {/* Impact Summary */}
-            <div className="glass rounded-2xl p-6 mb-8 shadow-glass">
-              <h3 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-accent" />
+            <div className="glass rounded-3xl p-8 mb-10 shadow-glow">
+              <h3 className="text-2xl font-bold text-text mb-6 flex items-center gap-3 font-heading">
+                <TrendingUp className="w-7 h-7 text-yellow" />
                 Resumo do Impacto
               </h3>
-              <div className="space-y-4 text-text-secondary">
+              <div className="space-y-4 text-text-secondary text-base">
                 <p>
                   Ao apoiar {impactMetrics.producersSupported} produtores locais, você está 
                   contribuindo para uma economia mais sustentável e fortalecendo a comunidade local.
@@ -146,60 +146,60 @@ export default function ImpactoPage() {
             </div>
 
             {/* ODS 11 Targets */}
-            <div className="glass rounded-2xl p-6 shadow-glass">
-              <h3 className="text-xl font-bold text-text mb-4">Metas do ODS 11</h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 p-3 glass rounded-xl">
-                  <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-primary">11.3</span>
+            <div className="glass rounded-3xl p-8 shadow-glow">
+              <h3 className="text-2xl font-bold text-text mb-6 font-heading">Metas do ODS 11</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 p-4 glass rounded-2xl">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base font-bold text-primary">11.3</span>
                   </div>
                   <div>
-                    <div className="font-medium text-text">Inclusão social e econômica</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-semibold text-text text-lg">Inclusão social e econômica</div>
+                    <div className="text-base text-text-secondary">
                       Aumentar a urbanização inclusiva e sustentável
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 glass rounded-xl">
-                  <div className="w-8 h-8 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-secondary">11.4</span>
+                <div className="flex items-start gap-4 p-4 glass rounded-2xl">
+                  <div className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base font-bold text-secondary">11.4</span>
                   </div>
                   <div>
-                    <div className="font-medium text-text">Patrimônio cultural</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-semibold text-text text-lg">Patrimônio cultural</div>
+                    <div className="text-base text-text-secondary">
                       Fortalecer esforços para proteger o patrimônio cultural e natural
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 glass rounded-xl">
-                  <div className="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-accent">11.6</span>
+                <div className="flex items-start gap-4 p-4 glass rounded-2xl">
+                  <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base font-bold text-accent">11.6</span>
                   </div>
                   <div>
-                    <div className="font-medium text-text">Impacto ambiental</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-semibold text-text text-lg">Impacto ambiental</div>
+                    <div className="text-base text-text-secondary">
                       Reduzir o impacto ambiental per capita das cidades
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 glass rounded-xl">
-                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-green-500">11.7</span>
+                <div className="flex items-start gap-4 p-4 glass rounded-2xl">
+                  <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base font-bold text-green-500">11.7</span>
                   </div>
                   <div>
-                    <div className="font-medium text-text">Espaços verdes</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-semibold text-text text-lg">Espaços verdes</div>
+                    <div className="text-base text-text-secondary">
                       Aumentar o acesso a espaços verdes e públicos
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 glass rounded-xl">
-                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-blue-500">11.A</span>
+                <div className="flex items-start gap-4 p-4 glass rounded-2xl">
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base font-bold text-blue-500">11.A</span>
                   </div>
                   <div>
-                    <div className="font-medium text-text">Planejamento integrado</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-semibold text-text text-lg">Planejamento integrado</div>
+                    <div className="text-base text-text-secondary">
                       Apoiar relações econômicas, sociais e ambientais positivas
                     </div>
                   </div>

@@ -53,35 +53,35 @@ export const Header: React.FC<HeaderProps> = ({ showMenu = true, onMenuClick }) 
   const fullName = user ? `${user.firstName} ${user.lastName}`.trim() : 'Usuário'
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-card">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-4">
             {showMenu && (
               <button
                 onClick={onMenuClick}
-                className="lg:hidden p-2 hover:bg-surface rounded-lg transition-colors"
+                className="lg:hidden p-3 hover:bg-card rounded-xl transition-colors"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-6 h-6 text-text-secondary" />
               </button>
             )}
             <Logo size="md" />
           </div>
           
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 hover:bg-surface rounded-lg transition-colors">
-              <Bell className="w-6 h-6" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
+          <div className="flex items-center gap-3">
+            <button className="relative p-3 hover:bg-card rounded-xl transition-colors group">
+              <Bell className="w-6 h-6 text-text-secondary group-hover:text-text transition-colors" />
+              <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-primary rounded-full shadow-glow" />
             </button>
             
             {user && (
               <div className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-2 p-1 hover:bg-surface rounded-lg transition-colors"
+                  className="flex items-center gap-3 p-2 hover:bg-card rounded-xl transition-colors"
                 >
-                  <Avatar src={user.avatar} alt={fullName} size="sm" />
-                  <ChevronDown className="w-4 h-4 text-text-secondary hidden sm:block" />
+                  <Avatar src={user.avatar} alt={fullName} size="md" />
+                  <ChevronDown className={`w-5 h-5 text-text-secondary transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Dropdown Menu */}
@@ -91,53 +91,53 @@ export const Header: React.FC<HeaderProps> = ({ showMenu = true, onMenuClick }) 
                       className="fixed inset-0 z-40"
                       onClick={() => setDropdownOpen(false)}
                     />
-                    <div className="absolute right-0 top-full mt-2 w-56 glass rounded-xl shadow-glow border border-card overflow-hidden z-50">
-                      <div className="p-3 border-b border-card">
-                        <p className="font-medium text-text">{fullName}</p>
+                    <div className="absolute right-0 top-full mt-3 w-64 glass-strong rounded-2xl shadow-glow border border-border overflow-hidden z-50">
+                      <div className="p-4 border-b border-border">
+                        <p className="font-semibold text-text text-lg">{fullName}</p>
                         <p className="text-sm text-text-secondary truncate">{user.email}</p>
                       </div>
                       
-                      <div className="p-1">
+                      <div className="p-2 space-y-1">
                         <button
                           onClick={handleProfile}
-                          className="w-full flex items-center gap-3 px-3 py-2 text-left text-text hover:bg-card rounded-lg transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
                         >
-                          <User className="w-4 h-4" />
-                          <span>Meu Perfil</span>
+                          <User className="w-5 h-5 text-text-secondary" />
+                          <span className="font-medium">Meu Perfil</span>
                         </button>
                         
                         <button
                           onClick={handleEditProfile}
-                          className="w-full flex items-center gap-3 px-3 py-2 text-left text-text hover:bg-card rounded-lg transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
                         >
-                          <User className="w-4 h-4" />
-                          <span>Editar Perfil</span>
+                          <User className="w-5 h-5 text-text-secondary" />
+                          <span className="font-medium">Editar Perfil</span>
                         </button>
                         
                         <button
                           onClick={handleFavorites}
-                          className="w-full flex items-center gap-3 px-3 py-2 text-left text-text hover:bg-card rounded-lg transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
                         >
-                          <Heart className="w-4 h-4" />
-                          <span>Favoritos</span>
+                          <Heart className="w-5 h-5 text-text-secondary" />
+                          <span className="font-medium">Favoritos</span>
                         </button>
                         
                         <button
                           onClick={handleSettings}
-                          className="w-full flex items-center gap-3 px-3 py-2 text-left text-text hover:bg-card rounded-lg transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-card rounded-xl transition-colors"
                         >
-                          <Settings className="w-4 h-4" />
-                          <span>Configurações</span>
+                          <Settings className="w-5 h-5 text-text-secondary" />
+                          <span className="font-medium">Configurações</span>
                         </button>
                       </div>
                       
-                      <div className="border-t border-card p-1">
+                      <div className="border-t border-border p-2">
                         <button
                           onClick={handleLogout}
-                          className="w-full flex items-center gap-3 px-3 py-2 text-left text-red-500 hover:bg-card rounded-lg transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-red-500 hover:bg-card rounded-xl transition-colors"
                         >
-                          <LogOut className="w-4 h-4" />
-                          <span>Sair</span>
+                          <LogOut className="w-5 h-5" />
+                          <span className="font-medium">Sair</span>
                         </button>
                       </div>
                     </div>

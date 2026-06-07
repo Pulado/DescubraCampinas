@@ -43,63 +43,65 @@ export default function ARPage() {
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 pb-24 lg:pb-8 overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1">
+            <h1 className="text-3xl sm:text-4xl font-bold text-text mb-2 flex items-center gap-3 font-heading">
+              <Camera className="w-10 h-10 text-purple" />
               Realidade Aumentada
             </h1>
-            <p className="text-text-secondary mb-6">
+            <p className="text-text-secondary mb-8 text-base">
               Caça a cupons e recompensas virtuais
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              <div className="glass rounded-xl p-4 text-center shadow-glow-purple">
-                <div className="text-2xl font-bold text-purple">{collectedCount}</div>
-                <div className="text-xs text-text-secondary">Coletados</div>
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="glass rounded-2xl p-6 text-center shadow-glow-purple">
+                <div className="text-3xl font-bold text-purple font-heading">{collectedCount}</div>
+                <div className="text-sm text-text-secondary mt-1">Coletados</div>
               </div>
-              <div className="glass rounded-xl p-4 text-center shadow-glow-purple">
-                <div className="text-2xl font-bold text-purple">{collectibles.filter(c => !c.collected).length}</div>
-                <div className="text-xs text-text-secondary">Restantes</div>
+              <div className="glass rounded-2xl p-6 text-center shadow-glow-purple">
+                <div className="text-3xl font-bold text-purple font-heading">{collectibles.filter(c => !c.collected).length}</div>
+                <div className="text-sm text-text-secondary mt-1">Restantes</div>
               </div>
-              <div className="glass rounded-xl p-4 text-center shadow-glow-purple">
-                <div className="text-2xl font-bold text-purple">5</div>
-                <div className="text-xs text-text-secondary">Total</div>
+              <div className="glass rounded-2xl p-6 text-center shadow-glow-purple">
+                <div className="text-3xl font-bold text-purple font-heading">5</div>
+                <div className="text-sm text-text-secondary mt-1">Total</div>
               </div>
             </div>
 
             {!cameraActive ? (
-              <div className="glass rounded-2xl p-8 text-center shadow-glow-purple">
-                <Camera className="w-24 h-24 text-purple mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-text mb-2">
+              <div className="glass rounded-3xl p-12 text-center shadow-glow-purple">
+                <Camera className="w-32 h-32 text-purple mx-auto mb-6" />
+                <h2 className="text-2xl font-bold text-text mb-3 font-heading">
                   Ative a Câmera AR
                 </h2>
-                <p className="text-text-secondary mb-6">
+                <p className="text-text-secondary mb-8 text-base">
                   Encontre objetos virtuais e colete recompensas exclusivas
                 </p>
                 <Button
                   variant="primary"
                   size="lg"
+                  className="rounded-2xl py-4 px-8 text-lg font-semibold"
                   onClick={() => setCameraActive(true)}
                 >
-                  <Camera className="w-5 h-5 mr-2" />
+                  <Camera className="w-6 h-6 mr-3" />
                   Ativar Câmera
                 </Button>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {/* AR View */}
-                <div className="relative h-96 glass rounded-2xl overflow-hidden shadow-glow-purple">
+                <div className="relative h-[500px] glass rounded-3xl overflow-hidden shadow-glow-purple">
                   {/* Simulated Camera View */}
                   <div className="absolute inset-0 bg-gradient-to-br from-surface to-background">
                     <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-purple rounded-full animate-pulse" />
-                      <div className="absolute top-1/2 right-1/4 w-24 h-24 border-2 border-accent rounded-full animate-pulse delay-100" />
-                      <div className="absolute bottom-1/4 left-1/3 w-28 h-28 border-2 border-secondary rounded-full animate-pulse delay-200" />
+                      <div className="absolute top-1/4 left-1/4 w-40 h-40 border-2 border-purple rounded-full animate-pulse shadow-glow-purple" />
+                      <div className="absolute top-1/2 right-1/4 w-32 h-32 border-2 border-accent rounded-full animate-pulse delay-100 shadow-glow-yellow" />
+                      <div className="absolute bottom-1/4 left-1/3 w-36 h-36 border-2 border-secondary rounded-full animate-pulse delay-200 shadow-glow-blue" />
                     </div>
                   </div>
 
@@ -110,14 +112,14 @@ export default function ARPage() {
                         key={item.id}
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        whileHover={{ scale: 1.2 }}
+                        whileHover={{ scale: 1.3 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => handleCollect(item.id)}
-                        className="absolute text-4xl cursor-pointer"
+                        className="absolute text-5xl cursor-pointer"
                         style={{ left: `${item.x}%`, top: `${item.y}%` }}
                       >
                         <motion.div
-                          animate={{ y: [0, -10, 0] }}
+                          animate={{ y: [0, -15, 0] }}
                           transition={{ duration: 2, repeat: Infinity }}
                         >
                           {item.icon}
@@ -127,17 +129,17 @@ export default function ARPage() {
                   ))}
 
                   {/* AR Overlay */}
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <Badge variant="primary">
-                      <Target className="w-3 h-3 mr-1" />
+                  <div className="absolute top-6 left-6 flex gap-3">
+                    <Badge variant="primary" className="text-sm px-4 py-2">
+                      <Target className="w-4 h-4 mr-2" />
                       {collectibles.filter(c => !c.collected).length} objetos
                     </Badge>
                   </div>
 
-                  <div className="absolute bottom-4 left-4 right-4">
+                  <div className="absolute bottom-6 left-6 right-6">
                     <Button
                       variant="secondary"
-                      className="w-full"
+                      className="w-full rounded-2xl py-4 text-base font-semibold"
                       onClick={() => setCameraActive(false)}
                     >
                       Fechar Câmera
@@ -146,32 +148,32 @@ export default function ARPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-card rounded-xl p-4 text-center">
-                    <div className="text-2xl font-bold text-accent">{collectedCount}</div>
-                    <div className="text-xs text-text-secondary">Coletados</div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="glass rounded-2xl p-6 text-center shadow-glow">
+                    <div className="text-3xl font-bold text-accent font-heading">{collectedCount}</div>
+                    <div className="text-sm text-text-secondary mt-1">Coletados</div>
                   </div>
-                  <div className="bg-card rounded-xl p-4 text-center">
-                    <div className="text-2xl font-bold text-primary">
+                  <div className="glass rounded-2xl p-6 text-center shadow-glow">
+                    <div className="text-3xl font-bold text-primary font-heading">
                       {collectibles.filter(c => c.type === 'coin' && c.collected).length * 10}
                     </div>
-                    <div className="text-xs text-text-secondary">Moedas</div>
+                    <div className="text-sm text-text-secondary mt-1">Moedas</div>
                   </div>
-                  <div className="bg-card rounded-xl p-4 text-center">
-                    <div className="text-2xl font-bold text-secondary">
+                  <div className="glass rounded-2xl p-6 text-center shadow-glow">
+                    <div className="text-3xl font-bold text-secondary font-heading">
                       {collectibles.filter(c => c.type === 'coupon' && c.collected).length}
                     </div>
-                    <div className="text-xs text-text-secondary">Cupons</div>
+                    <div className="text-sm text-text-secondary mt-1">Cupons</div>
                   </div>
                 </div>
 
                 {/* Instructions */}
-                <div className="bg-card rounded-xl p-4">
-                  <h3 className="font-bold text-text mb-2 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-accent" />
+                <div className="glass rounded-3xl p-8 shadow-glow">
+                  <h3 className="font-bold text-text mb-4 flex items-center gap-3 text-xl font-heading">
+                    <Sparkles className="w-7 h-7 text-yellow" />
                     Como funciona
                   </h3>
-                  <ul className="text-sm text-text-secondary space-y-1">
+                  <ul className="text-base text-text-secondary space-y-3">
                     <li>• Toque nos objetos virtuais para coletá-los</li>
                     <li>• Cada coleta ganha moedas do app</li>
                     <li>• Encontre cupons exclusivos</li>
