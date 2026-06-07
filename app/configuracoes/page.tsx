@@ -32,6 +32,8 @@ export default function ConfiguracoesPage() {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       setUser(JSON.parse(savedUser))
+    } else {
+      router.push('/login')
     }
     
     const savedTheme = localStorage.getItem('theme') as 'dark' | 'light'
@@ -98,11 +100,7 @@ export default function ConfiguracoesPage() {
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-text-secondary">Carregando...</p>
-      </div>
-    )
+    return null
   }
 
   const fullName = `${user.firstName} ${user.lastName}`.trim()

@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { Sidebar } from '@/components/layout/Sidebar'
@@ -11,6 +12,7 @@ import { User } from '@/lib/types'
 import { Award, Lock, Star, Zap } from 'lucide-react'
 
 export default function ConquistasPage() {
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState<User | null>(null)
 
@@ -18,8 +20,14 @@ export default function ConquistasPage() {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser))
+    } else {
+      router.push('/login')
     }
   }, [])
+
+  if (!currentUser) {
+    return null
+  }
 
   return (
     <>

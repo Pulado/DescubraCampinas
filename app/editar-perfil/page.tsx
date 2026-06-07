@@ -49,6 +49,8 @@ export default function EditarPerfilPage() {
         bio: parsedUser.bio || '',
       })
       setSelectedAvatar(parsedUser.avatar || presetAvatars[0])
+    } else {
+      router.push('/login')
     }
   }, [])
 
@@ -114,11 +116,7 @@ export default function EditarPerfilPage() {
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-text-secondary">Carregando...</p>
-      </div>
-    )
+    return null
   }
 
   const fullName = `${formData.firstName} ${formData.lastName}`.trim()

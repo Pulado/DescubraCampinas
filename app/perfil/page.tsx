@@ -38,11 +38,14 @@ export default function PerfilPage() {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       setUser(JSON.parse(savedUser))
+      
+      // Load favorites count
+      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+      setFavoritesCount(favorites.length)
+    } else {
+      // Redirect to login if no user is found
+      router.push('/login')
     }
-    
-    // Load favorites count
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-    setFavoritesCount(favorites.length)
   }, [])
 
   const handleLogout = () => {
@@ -59,11 +62,7 @@ export default function PerfilPage() {
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-text-secondary">Carregando...</p>
-      </div>
-    )
+    return null
   }
 
   const visitedLocations = locations.filter(l => user.visitedLocations.includes(l.id))

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { Sidebar } from '@/components/layout/Sidebar'
@@ -13,6 +14,7 @@ import { User } from '@/lib/types'
 import { Trophy, Medal, Crown, TrendingUp } from 'lucide-react'
 
 export default function RankingPage() {
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('weekly')
   const [currentUser, setCurrentUser] = useState<User | null>(null)
@@ -21,8 +23,14 @@ export default function RankingPage() {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser))
+    } else {
+      router.push('/login')
     }
   }, [])
+
+  if (!currentUser) {
+    return null
+  }
 
   const tabs = [
     { id: 'weekly', label: 'Semanal' },
